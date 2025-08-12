@@ -1,73 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- Primary Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programa de Indicação DALTV IPTV | Ganhe R$10 por indicação</title>
     <meta name="description" content="Indique amigos para a DALTV IPTV e ganhe R$10 por cada assinatura. Seus amigos ganham 10% de desconto e você recebe por PIX!">
     <meta name="keywords" content="IPTV, indicação, ganhe dinheiro, programa afiliados, DALTV, PIX">
     <meta name="author" content="DALTV">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Facebook (WhatsApp usa esse protocolo) -->
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.daltv.site/">
     <meta property="og:title" content="Programa de Indicação DALTV IPTV | Ganhe R$10 por indicação">
     <meta property="og:description" content="Indique amigos para a DALTV IPTV e ganhe R$10 por cada assinatura. Seus amigos ganham 10% de desconto e você recebe por PIX!">
-    <meta property="og:image" content="https://i.imgur.com/eXVG7DC.jpeg?v=2">
-    <meta property="og:image:secure_url" content="https://i.imgur.com/eXVG7DC.jpeg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Ganhe R$10 por indicação na DALTV IPTV">
-    <meta property="og:site_name" content="DALTV IPTV">
-    <meta property="og:locale" content="pt_BR">
-
-    <!-- Twitter Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@daltv">
-    <meta name="twitter:creator" content="@daltv">
-    <meta name="twitter:title" content="Programa de Indicação DALTV IPTV | Ganhe R$10 por indicação">
-    <meta name="twitter:description" content="Indique amigos para a DALTV IPTV e ganhe R$10 por cada assinatura. Seus amigos ganham 10% de desconto e você recebe por PIX!">
-    <meta name="twitter:image" content="https://i.imgur.com/eXVG7DC.jpeg">
-    <meta name="twitter:image:alt" content="Banner de indicação DALTV IPTV">
-
-    <!-- WhatsApp Specific -->
-    <meta property="og:image:whatsapp" content="https://i.imgur.com/eXVG7DC.jpeg">
-    <meta name="whatsapp:image" content="https://i.imgur.com/eXVG7DC.jpeg">
-
-    <!-- Apple/Safari Tags -->
-    <meta name="apple-mobile-web-app-title" content="DALTV Indicação">
-    <link rel="apple-touch-icon" href="https://www.daltv.site/apple-touch-icon.png">
-
-    <!-- Cache Control -->
-    <meta http-equiv="Cache-Control" content="public, max-age=604800, immutable">
-
-    <!-- Schema.org Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Programa de Indicação DALTV IPTV",
-      "description": "Indique amigos para a DALTV IPTV e ganhe R$10 por cada assinatura",
-      "url": "https://www.daltv.site/",
-      "image": {
-        "@type": "ImageObject",
-        "url": "https://i.imgur.com/eXVG7DC.jpeg",
-        "width": "1200",
-        "height": "630"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "DALTV",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.daltv.site/logo.png"
-        }
-      }
-    }
-    </script>
+    <meta property="og:image" content="https://i.imgur.com/eXVG7DC.jpeg">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -113,7 +59,7 @@
     /* ============ HERO SECTION ============ */
     .hero {
         background: linear-gradient(152deg, rgba(10,10,10,0.95) 30%, rgba(180,10,20,0.85) 120%);
-        padding: 2.5rem 1.5rem;
+        padding: 2rem 1.5rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -121,7 +67,7 @@
         text-align: center;
         position: relative;
         overflow: hidden;
-        min-height: 60vh;
+        min-height: 80vh;
     }
     
     @media (min-width: 768px) {
@@ -131,102 +77,71 @@
         }
     }
     
-    .hero::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(229,9,20,0.15) 0%, transparent 70%);
-        animation: rotate 25s linear infinite;
-        z-index: 0;
-    }
-    
     .hero-content {
         position: relative;
         z-index: 2;
         width: 100%;
-        max-width: 1200px;
+        max-width: 800px;
         margin: 0 auto;
     }
     
     .logo-container {
-        margin-bottom: 1.8rem;
-        animation: pulse 2.5s infinite alternate;
+        margin-bottom: 2rem;
     }
     
     .logo {
-        width: min(280px, 60vw);
+        width: min(280px, 70vw);
         height: auto;
-        filter: drop-shadow(0 5px 15px rgba(229, 9, 20, 0.6));
-        transition: var(--transicao-padrao);
+        filter: drop-shadow(0 0 20px rgba(229, 9, 20, 0.5));
+        transition: transform 0.5s ease, filter 0.5s ease;
+    }
+    
+    .logo:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 25px rgba(229, 9, 20, 0.7));
     }
     
     .hero-buttons {
         display: flex;
-        flex-direction: column;
-        gap: 15px;
-        margin-top: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
         width: 100%;
-        max-width: 400px;
     }
     
-    @media (min-width: 576px) {
-        .hero-buttons {
-            flex-direction: row;
-            justify-content: center;
-        }
-        
-        .hero-buttons .btn {
-            width: auto;
-            min-width: 200px;
-        }
-    }
-    
-    /* ============ TYPOGRAPHY ============ */
-    h1 {
-        font-size: clamp(2rem, 5vw, 3rem);
-        margin-bottom: 1.2rem;
-        background: linear-gradient(135deg, var(--dourado) 20%, var(--branco) 80%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        line-height: 1.2;
-        font-weight: 800;
-        letter-spacing: -0.5px;
-        text-shadow: var(--sombra-padrao);
-    }
-    
-    h2 {
-        font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-        margin: 2.5rem 0 1.5rem;
-        color: var(--branco);
-        position: relative;
-        display: inline-block;
-        font-weight: 700;
-    }
-    
-    h2::after {
-        content: '';
-        position: absolute;
-        bottom: -0.8rem;
-        left: 0;
-        width: 4rem;
-        height: 0.25rem;
-        background: linear-gradient(90deg, var(--vermelho), var(--dourado));
-        border-radius: 0.25rem;
-    }
-    
-    h3 {
-        font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    .hero-btn {
+        flex: 1;
+        min-width: 220px;
+        padding: 1.2rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
         font-weight: 600;
-        margin-bottom: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
     
-    p {
-        font-size: clamp(1rem, 2vw, 1.1rem);
-        margin-bottom: 1.2rem;
-        color: rgba(255, 255, 255, 0.9);
+    .btn-indicar {
+        background: linear-gradient(135deg, var(--vermelho), var(--vermelho-escuro));
+        color: white;
+        box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+    }
+    
+    .btn-revender {
+        background: linear-gradient(135deg, var(--dourado), #d4af37);
+        color: #000;
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+    }
+    
+    .hero-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
     }
     
     /* ============ MAIN CONTAINER ============ */
@@ -241,21 +156,18 @@
         position: relative;
         z-index: 10;
         border: 1px solid rgba(229, 9, 20, 0.3);
-        transform: translateY(20px);
-        opacity: 0;
-        animation: slideUp 0.8s 0.3s ease-out forwards;
     }
     
     .content {
-        padding: clamp(1.5rem, 4vw, 3rem);
+        padding: 2.5rem;
     }
     
     /* ============ BENEFITS GRID ============ */
     .benefits-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 1.5rem;
-        margin: 2.5rem 0;
+        margin: 2rem 0;
     }
     
     .benefit-card {
@@ -265,8 +177,6 @@
         border-left: 0.3rem solid var(--vermelho);
         transition: var(--transicao-padrao);
         box-shadow: var(--sombra-padrao);
-        position: relative;
-        overflow: hidden;
     }
     
     .benefit-card:hover {
@@ -274,42 +184,24 @@
         box-shadow: 0 15px 30px rgba(229, 9, 20, 0.3);
     }
     
-    .benefit-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(229, 9, 20, 0.1), transparent);
-        z-index: 0;
-    }
-    
     .benefit-icon {
         font-size: 2.5rem;
         color: var(--vermelho);
         margin-bottom: 1rem;
-        position: relative;
-        z-index: 1;
-        transition: var(--transicao-padrao);
     }
     
     /* ============ FORM STYLES ============ */
     .form-container {
         background: linear-gradient(145deg, #1A1A1A, #222222);
-        padding: clamp(1.5rem, 3vw, 2.5rem);
+        padding: 2rem;
         border-radius: 0.8rem;
         margin-top: 2.5rem;
         border: 1px solid var(--vermelho);
         box-shadow: 0 10px 25px rgba(229, 9, 20, 0.2);
-        position: relative;
-        overflow: hidden;
     }
     
     .form-group {
         margin-bottom: 1.5rem;
-        position: relative;
-        z-index: 1;
     }
     
     label {
@@ -317,7 +209,6 @@
         margin-bottom: 0.8rem;
         font-weight: 600;
         color: var(--branco);
-        font-size: 1.1rem;
     }
     
     input {
@@ -327,94 +218,25 @@
         border: none;
         border-radius: 0.5rem;
         color: var(--branco);
-        font-size: 1.1rem;
+        font-size: 1rem;
         transition: var(--transicao-padrao);
         border: 1px solid #444;
-        font-family: inherit;
     }
     
     input:focus {
         outline: none;
         border-color: var(--vermelho);
         box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.3);
-        background-color: #3a3a3a;
-    }
-    
-    /* ============ BUTTONS ============ */
-    .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.8rem;
-        background: linear-gradient(135deg, var(--vermelho), var(--vermelho-escuro));
-        color: white;
-        padding: 1rem 2rem;
-        border: none;
-        border-radius: 0.5rem;
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: var(--transicao-padrao);
-        text-align: center;
-        width: 100%;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
-        letter-spacing: 0.5px;
-        z-index: 1;
-    }
-    
-    .btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(229, 9, 20, 0.6);
-        background: linear-gradient(135deg, var(--vermelho-escuro), var(--vermelho));
-    }
-    
-    .btn:active {
-        transform: translateY(1px);
-    }
-    
-    .btn::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: 0.5s;
-    }
-    
-    .btn:hover::after {
-        left: 100%;
-    }
-    
-    .btn-gold {
-        background: linear-gradient(135deg, var(--dourado), #d4af37) !important;
-        color: #000 !important;
-    }
-    
-    .btn-gold:hover {
-        background: linear-gradient(135deg, #d4af37, var(--dourado)) !important;
-    }
-    
-    .pulse {
-        animation: pulse 2s infinite;
     }
     
     /* ============ RESULT SECTION ============ */
     .result {
-        margin-top: 2.5rem;
+        margin-top: 2rem;
         padding: 1.8rem;
         background: linear-gradient(145deg, #1A1A1A, #222222);
         border-radius: 0.8rem;
         border: 2px dashed var(--vermelho);
         text-align: center;
-        box-shadow: inset 0 0 20px rgba(229, 9, 20, 0.1);
-        position: relative;
-        z-index: 1;
-        animation: fadeIn 0.5s ease-out;
         display: none;
     }
     
@@ -425,7 +247,6 @@
         margin: 1.5rem 0;
         border: 1px solid rgba(229,9,20,0.3);
         word-break: break-all;
-        font-size: 1rem;
         position: relative;
         font-family: monospace;
         color: #FFD700;
@@ -453,11 +274,11 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 1rem;
-        margin-top: 2rem;
+        margin-top: 1.5rem;
     }
     
     .share-btn {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.6rem;
@@ -467,51 +288,16 @@
         text-decoration: none;
         font-weight: bold;
         transition: var(--transicao-padrao);
-        font-size: 1rem;
-        position: relative;
-        overflow: hidden;
-        box-shadow: var(--sombra-padrao);
     }
+    
+    .whatsapp { background: linear-gradient(135deg, var(--verde), #128C7E); }
+    .facebook { background: linear-gradient(135deg, var(--azul-facebook), #2d4373); }
+    .telegram { background: linear-gradient(135deg, var(--azul-telegram), #005f8b); }
+    .instagram { background: linear-gradient(135deg, var(--roxo-instagram), #C13584); }
     
     .share-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-    }
-    
-    .share-btn::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-        transition: 0.4s;
-    }
-    
-    .share-btn:hover::after {
-        left: 100%;
-    }
-    
-    .whatsapp {
-        background: linear-gradient(135deg, var(--verde), #128C7E);
-    }
-    
-    .facebook {
-        background: linear-gradient(135deg, var(--azul-facebook), #2d4373);
-    }
-    
-    .telegram {
-        background: linear-gradient(135deg, var(--azul-telegram), #005f8b);
-    }
-    
-    .instagram {
-        background: linear-gradient(135deg, var(--roxo-instagram), #C13584);
-    }
-    
-    .icon {
-        margin-right: 0.6rem;
-        font-size: 1.1rem;
     }
     
     /* ============ REVENDA SECTION ============ */
@@ -522,15 +308,13 @@
         border-radius: 1rem;
         border-left: 0.3rem solid var(--dourado);
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        position: relative;
-        overflow: hidden;
     }
     
     .revenda-columns {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1.5rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
     
     .revenda-card {
@@ -538,18 +322,6 @@
         padding: 1.5rem;
         border-radius: 0.8rem;
         border: 1px solid rgba(255,215,0,0.3);
-        transition: var(--transicao-padrao);
-    }
-    
-    .revenda-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(255,215,0,0.1);
-    }
-    
-    .revenda-card h3 {
-        color: var(--dourado);
-        display: flex;
-        align-items: center;
     }
     
     .revenda-card ul {
@@ -575,10 +347,8 @@
         background: rgba(255,215,0,0.08);
         padding: 1.5rem;
         border-radius: 0.8rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         border: 1px dashed var(--dourado);
-        position: relative;
-        z-index: 1;
     }
     
     .revenda-btn {
@@ -588,7 +358,6 @@
         padding: 1rem 2rem;
         border-radius: 0.5rem;
         font-weight: bold;
-        font-size: 1.1rem;
         cursor: pointer;
         transition: var(--transicao-padrao);
         max-width: 400px;
@@ -597,40 +366,11 @@
         align-items: center;
         justify-content: center;
         gap: 0.8rem;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-        box-shadow: 0 4px 8px rgba(212, 175, 55, 0.3);
     }
     
     .revenda-btn:hover {
         transform: translateY(-3px);
         box-shadow: 0 8px 15px rgba(212, 175, 55, 0.4);
-        background: linear-gradient(135deg, #d4af37, var(--dourado));
-    }
-    
-    .revenda-btn::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-        transition: 0.4s;
-    }
-    
-    .revenda-btn:hover::after {
-        left: 100%;
-    }
-    
-    .revenda-note {
-        margin-top: 1.2rem;
-        font-size: 0.85rem;
-        color: #aaa;
-        text-align: center;
-        position: relative;
-        z-index: 1;
     }
     
     /* ============ FOOTER ============ */
@@ -638,73 +378,42 @@
         background: #000;
         padding: 1.5rem;
         text-align: center;
-        margin-top: 3rem;
         font-size: 0.9rem;
         color: #777;
         border-top: 1px solid rgba(229, 9, 20, 0.2);
-    }
-    
-    /* ============ ANIMATIONS ============ */
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-    
-    @keyframes slideUp {
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes rotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
-    }
-    
-    @keyframes pulse {
-        0% {
-            box-shadow: 0 0 0 0 rgba(229, 9, 20, 0.5);
-        }
-        70% {
-            box-shadow: 0 0 0 12px rgba(229, 9, 20, 0);
-        }
-        100% {
-            box-shadow: 0 0 0 0 rgba(229, 9, 20, 0);
-        }
     }
     
     /* ============ RESPONSIVE ADJUSTMENTS ============ */
     @media (max-width: 768px) {
         .hero {
             min-height: auto;
-            padding: 2rem 1.5rem;
+            padding: 2rem 1rem;
         }
         
         .container {
             margin: -2rem auto 2rem;
         }
         
-        .share-buttons {
-            grid-template-columns: 1fr;
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .hero {
-            padding: 1.5rem 1rem;
-        }
-        
         .content {
             padding: 1.5rem;
         }
         
-        .btn {
+        .hero-btn {
             padding: 1rem;
             font-size: 1rem;
         }
+    }
+    
+    @media (max-width: 480px) {
+        .hero-buttons {
+            flex-direction: column;
+        }
         
-        .revenda-columns {
+        .hero-btn {
+            width: 100%;
+        }
+        
+        .benefits-grid {
             grid-template-columns: 1fr;
         }
     }
@@ -718,12 +427,13 @@
             </div>
             <h1>Ganhe R$10 por cada indicação!</h1>
             <p>Indique amigos para a melhor IPTV do Brasil e receba dinheiro diretamente no seu PIX!</p>
+            
             <div class="hero-buttons">
-                <button class="btn pulse" onclick="document.getElementById('whatsapp').focus()">
+                <button class="hero-btn btn-indicar" onclick="document.getElementById('whatsapp').focus()">
                     <i class="fas fa-hand-holding-usd"></i> QUERO INDICAR
                 </button>
-                <a href="#revenda" class="btn btn-gold">
-                    <i class="fas fa-crown"></i> REVENDA
+                <a href="#revenda" class="hero-btn btn-revender">
+                    <i class="fas fa-crown"></i> QUERO REVENDER
                 </a>
             </div>
         </div>
@@ -764,7 +474,7 @@
                         <input type="text" id="nome" placeholder="Ex: João da Silva">
                     </div>
                     
-                    <button class="btn pulse" onclick="gerarLink()">
+                    <button class="hero-btn btn-indicar" onclick="gerarLink()">
                         <i class="fas fa-link"></i> GERAR MEU LINK
                     </button>
                 </div>
@@ -781,23 +491,23 @@
                             </button>
                         </div>
                         
-                        <button class="btn" onclick="copiarLink()">
+                        <button class="hero-btn btn-indicar" onclick="copiarLink()">
                             <i class="fas fa-copy"></i> COPIAR LINK
                         </button>
                         
-                        <h3 style="margin-top: 2.5rem;">Compartilhe Agora:</h3>
+                        <h3 style="margin-top: 2rem;">Compartilhe Agora:</h3>
                         <div class="share-buttons">
                             <a href="#" id="whatsapp-share" class="share-btn whatsapp" target="_blank">
-                                <i class="fab fa-whatsapp icon"></i> WhatsApp
+                                <i class="fab fa-whatsapp"></i> WhatsApp
                             </a>
                             <a href="#" id="facebook-share" class="share-btn facebook" target="_blank">
-                                <i class="fab fa-facebook-f icon"></i> Facebook
+                                <i class="fab fa-facebook-f"></i> Facebook
                             </a>
                             <a href="#" id="instagram-share" class="share-btn instagram" target="_blank">
-                                <i class="fab fa-instagram icon"></i> Instagram
+                                <i class="fab fa-instagram"></i> Instagram
                             </a>
                             <a href="#" id="telegram-share" class="share-btn telegram" target="_blank">
-                                <i class="fab fa-telegram icon"></i> Telegram
+                                <i class="fab fa-telegram"></i> Telegram
                             </a>
                         </div>
                     </div>
@@ -806,11 +516,11 @@
             
             <!-- Seção de Revenda -->
             <div id="revenda" class="revenda-section">
-                <h2><i class="fas fa-crown icon"></i>OPORTUNIDADE DE REVENDA</h2>
+                <h2><i class="fas fa-crown"></i> OPORTUNIDADE DE REVENDA</h2>
                 
                 <div class="revenda-columns">
                     <div class="revenda-card">
-                        <h3><i class="fas fa-coins icon"></i>Investimento Inicial</h3>
+                        <h3><i class="fas fa-coins"></i> Investimento Inicial</h3>
                         <ul>
                             <li>Apenas <strong>R$50</strong> para começar</li>
                             <li>Receba <strong>10 ativações</strong> para revender</li>
@@ -819,7 +529,7 @@
                     </div>
                     
                     <div class="revenda-card">
-                        <h3><i class="fas fa-chart-line icon"></i>Seu Potencial</h3>
+                        <h3><i class="fas fa-chart-line"></i> Seu Potencial</h3>
                         <ul>
                             <li>Venda cada ativação por <strong>R$25</strong></li>
                             <li>Transforme <strong>R$50 em R$250</strong></li>
@@ -829,16 +539,16 @@
                 </div>
                 
                 <div class="revenda-highlight">
-                    <h3><i class="fas fa-sync-alt icon"></i>Ganhos Recorrentes</h3>
+                    <h3><i class="fas fa-sync-alt"></i> Ganhos Recorrentes</h3>
                     <p>Além do lucro inicial, você ganha <strong>comissão em todas as renovações</strong> dos seus clientes!</p>
                     <p>Quanto mais você vende, mais sua renda mensal cresce.</p>
                 </div>
                 
-                <div class="text-center">
+                <div style="text-align: center;">
                     <button class="revenda-btn" onclick="window.open('https://wa.me/5588993509111?text=Quero%20ser%20revendedor%20DALTV')">
                         <i class="fas fa-paper-plane"></i> QUERO SER REVENDEDOR
                     </button>
-                    <p class="revenda-note">Vagas limitadas! Garanta sua posição hoje mesmo.</p>
+                    <p style="margin-top: 1rem; font-size: 0.85rem; color: #aaa;">Vagas limitadas! Garanta sua posição hoje mesmo.</p>
                 </div>
             </div>
         </div>
@@ -849,7 +559,6 @@
     </div>
 
     <script>
-    // Função para verificar referência ao carregar a página
     function checkReferral() {
         const urlParams = new URLSearchParams(window.location.search);
         const ref = urlParams.get('ref');
@@ -860,7 +569,6 @@
         }
     }
 
-    // Função para o cliente gerar seu link de indicação
     function gerarLink() {
         const whatsappInput = document.getElementById('whatsapp');
         const nomeInput = document.getElementById('nome');
@@ -891,7 +599,6 @@
         document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Função para copiar o link
     function copiarLink() {
         const link = document.getElementById('link-indicacao').textContent;
         
@@ -916,17 +623,8 @@
         }
     }
 
-    // Inicialização
     document.addEventListener('DOMContentLoaded', function() {
         checkReferral();
-        
-        setTimeout(() => {
-            const container = document.querySelector('.container');
-            if (container) {
-                container.style.opacity = '1';
-                container.style.transform = 'translateY(0)';
-            }
-        }, 300);
     });
     </script>
 </body>

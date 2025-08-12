@@ -125,18 +125,23 @@
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        user-select: none;
     }
     
     .btn-indicar {
         background: linear-gradient(135deg, var(--vermelho), var(--vermelho-escuro));
         color: white;
         box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+        border: none;
     }
     
     .btn-revender {
         background: linear-gradient(135deg, var(--dourado), #d4af37);
         color: #000;
         box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        text-decoration: none;
     }
     
     .hero-btn:hover {
@@ -429,7 +434,7 @@
             <p>Indique amigos para a melhor IPTV do Brasil e receba dinheiro diretamente no seu PIX!</p>
             
             <div class="hero-buttons">
-                <button class="hero-btn btn-indicar" onclick="document.getElementById('whatsapp').focus()">
+                <button class="hero-btn btn-indicar" id="btnIndicar">
                     <i class="fas fa-hand-holding-usd"></i> QUERO INDICAR
                 </button>
                 <a href="#revenda" class="hero-btn btn-revender">
@@ -474,7 +479,7 @@
                         <input type="text" id="nome" placeholder="Ex: João da Silva">
                     </div>
                     
-                    <button class="hero-btn btn-indicar" onclick="gerarLink()">
+                    <button class="hero-btn btn-indicar" id="btnGerarLink">
                         <i class="fas fa-link"></i> GERAR MEU LINK
                     </button>
                 </div>
@@ -486,12 +491,12 @@
                         
                         <div class="link-container">
                             <span id="link-indicacao"></span>
-                            <button class="copy-btn" onclick="copiarLink()">
+                            <button class="copy-btn" id="btnCopySmall">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
                         
-                        <button class="hero-btn btn-indicar" onclick="copiarLink()">
+                        <button class="hero-btn btn-indicar" id="btnCopyLarge">
                             <i class="fas fa-copy"></i> COPIAR LINK
                         </button>
                         
@@ -545,7 +550,7 @@
                 </div>
                 
                 <div style="text-align: center;">
-                    <button class="revenda-btn" onclick="window.open('https://wa.me/5588993509111?text=Quero%20ser%20revendedor%20DALTV')">
+                    <button class="revenda-btn" id="btnRevenda">
                         <i class="fas fa-paper-plane"></i> QUERO SER REVENDEDOR
                     </button>
                     <p style="margin-top: 1rem; font-size: 0.85rem; color: #aaa;">Vagas limitadas! Garanta sua posição hoje mesmo.</p>
@@ -559,6 +564,7 @@
     </div>
 
     <script>
+    // Verificar referência ao carregar a página
     function checkReferral() {
         const urlParams = new URLSearchParams(window.location.search);
         const ref = urlParams.get('ref');
@@ -569,6 +575,7 @@
         }
     }
 
+    // Gerar link de indicação
     function gerarLink() {
         const whatsappInput = document.getElementById('whatsapp');
         const nomeInput = document.getElementById('nome');
@@ -599,6 +606,7 @@
         document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
     }
 
+    // Copiar link para área de transferência
     function copiarLink() {
         const link = document.getElementById('link-indicacao').textContent;
         
@@ -623,8 +631,22 @@
         }
     }
 
+    // Inicialização
     document.addEventListener('DOMContentLoaded', function() {
         checkReferral();
+        
+        // Event listeners
+        document.getElementById('btnIndicar').addEventListener('click', function() {
+            document.getElementById('whatsapp').focus();
+        });
+        
+        document.getElementById('btnGerarLink').addEventListener('click', gerarLink);
+        document.getElementById('btnCopySmall').addEventListener('click', copiarLink);
+        document.getElementById('btnCopyLarge').addEventListener('click', copiarLink);
+        
+        document.getElementById('btnRevenda').addEventListener('click', function() {
+            window.open('https://wa.me/5588993509111?text=Quero%20ser%20revendedor%20DALTV');
+        });
     });
     </script>
 </body>

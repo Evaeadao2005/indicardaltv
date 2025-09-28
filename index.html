@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programa de Indicação DALTV IPTV | Ganhe R$10 por indicação</title>
-    <meta name="description" content="Indique amigos para a DALTV IPTV e ganhe R$10 por cada assinatura. Seus amigos ganham 10% de desconto e você recebe por PIX!">
-    <meta name="keywords" content="IPTV, indicação, ganhe dinheiro, programa afiliados, DALTV, PIX">
+    <title>Programa de Indicação DALTV IPTV | Ganhe Prêmios por Indicação</title>
+    <meta name="description" content="Indique amigos para a DALTV IPTV e ganhe R$10 ou 1 mês grátis por cada assinatura.">
+    <meta name="keywords" content="IPTV, indicação, ganhe dinheiro, programa afiliados, DALTV, PIX, mês grátis">
     <meta name="author" content="DALTV">
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.daltv.site/">
-    <meta property="og:title" content="Programa de Indicação DALTV IPTV | Ganhe R$10 por indicação">
-    <meta property="og:description" content="Indique amigos para a DALTV IPTV e ganhe R$10 por cada assinatura. Seus amigos ganham 10% de desconto e você recebe por PIX!">
+    <meta property="og:title" content="Programa de Indicação DALTV IPTV | Ganhe Prêmios por Indicação">
+    <meta property="og:description" content="Indique amigos para a DALTV IPTV e ganhe R$10 ou 1 mês grátis por cada assinatura.">
     <meta property="og:image" content="https://i.imgur.com/eXVG7DC.jpeg">
     
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Favicon -->
     <link rel="icon" href="https://daltv.site/favicon.ico" type="image/x-icon">
     
     <style>
@@ -69,14 +66,7 @@
         overflow: hidden;
         min-height: 80vh;
     }
-    
-    @media (min-width: 768px) {
-        .hero {
-            background: linear-gradient(135deg, rgba(10,10,10,0.9), rgba(180,10,20,0.7)), 
-                        url('https://daltv.site/bannerindicacao.webp') no-repeat center center/cover;
-        }
-    }
-    
+        
     .hero-content {
         position: relative;
         z-index: 2;
@@ -430,8 +420,8 @@
             <div class="logo-container">
                 <img src="https://daltv.site/logo.png" alt="DALTV" class="logo">
             </div>
-            <h1>Ganhe R$10 por cada indicação!</h1>
-            <p>Indique amigos para a melhor IPTV do Brasil e receba dinheiro diretamente no seu PIX!</p>
+            <h1>Ganhe R$10 ou 1 Mês Grátis por Indicação!</h1>
+            <p>Indique amigos para a melhor IPTV do Brasil e escolha sua recompensa: PIX ou 1 mês de acesso grátis!</p>
             
             <div class="hero-buttons">
                 <button class="hero-btn btn-indicar" id="btnIndicar">
@@ -449,18 +439,13 @@
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-money-bill-wave"></i></div>
-                    <h3>Ganhe Dinheiro</h3>
-                    <p>R$10 direto no seu PIX por cada amigo que assinar através do seu link</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon"><i class="fas fa-gift"></i></div>
-                    <h3>Presenteie Amigos</h3>
-                    <p>Quem você indicar ganha 10% de desconto na primeira mensalidade</p>
+                    <h3>Sua Escolha, Seu Prêmio</h3>
+                    <p>Escolha entre R$10 no PIX ou 1 mês de acesso grátis por cada amigo que assinar.</p>
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
                     <h3>Sem Limites</h3>
-                    <p>Indique quantos amigos quiser e multiplique seus ganhos</p>
+                    <p>Indique quantos amigos quiser e multiplique seus ganhos.</p>
                 </div>
             </div>
             
@@ -519,7 +504,6 @@
                 </div>
             </div>
             
-            <!-- Seção de Revenda -->
             <div id="revenda" class="revenda-section">
                 <h2><i class="fas fa-crown"></i> OPORTUNIDADE DE REVENDA</h2>
                 
@@ -570,7 +554,7 @@
         const ref = urlParams.get('ref');
         
         if (ref) {
-            const mensagem = `Olá DALTV, tenho interesse em testar e assinar com 10% de desconto\n\nIndicado pelo cliente: ${ref}`;
+            const mensagem = `Olá DALTV, tenho interesse em testar e assinar.\n\nFui indicado(a) por: ${ref}`;
             window.location.href = `https://wa.me/5588993509111?text=${encodeURIComponent(mensagem)}`;
         }
     }
@@ -596,7 +580,7 @@
         document.getElementById('link-indicacao').textContent = linkIndicacao;
         document.getElementById('result').style.display = 'block';
         
-        const mensagemCompartilhamento = `${nome} te indicou a DALTV IPTV!\n\n💎 Assine com 10% de desconto usando este link:\n${linkIndicacao}\n\n💰 Você também ganha R$10 por indicação!`;
+        const mensagemCompartilhamento = `${nome} te indicou a DALTV IPTV!\n\n💎 Clique no link para conhecer o melhor conteúdo:\n${linkIndicacao}\n\n💰 Você também pode ganhar R$10 ou 1 mês grátis a cada amigo que indicar!`;
         
         document.getElementById('whatsapp-share').href = `https://wa.me/?text=${encodeURIComponent(mensagemCompartilhamento)}`;
         document.getElementById('facebook-share').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(linkIndicacao)}`;
@@ -637,6 +621,7 @@
         
         // Event listeners
         document.getElementById('btnIndicar').addEventListener('click', function() {
+            document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
             document.getElementById('whatsapp').focus();
         });
         

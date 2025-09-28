@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programa de Indicação DALTV IPTV | Ganhe Prêmios por Indicação</title>
-    <meta name="description" content="Indique amigos para a DALTV IPTV e ganhe R$10 ou 1 mês grátis por cada assinatura.">
+    <title>Programa de Indicação DALTV | Ganhe Prêmios por Indicação</title>
+    <meta name="description" content="Indique amigos para a DALTV e ganhe R$10 ou 1 mês grátis por cada assinatura.">
     <meta name="keywords" content="IPTV, indicação, ganhe dinheiro, programa afiliados, DALTV, PIX, mês grátis">
     <meta name="author" content="DALTV">
     
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.daltv.site/">
-    <meta property="og:title" content="Programa de Indicação DALTV IPTV | Ganhe Prêmios por Indicação">
-    <meta property="og:description" content="Indique amigos para a DALTV IPTV e ganhe R$10 ou 1 mês grátis por cada assinatura.">
+    <meta property="og:title" content="Programa de Indicação DALTV | Ganhe Prêmios por Indicação">
+    <meta property="og:description" content="Indique amigos para a DALTV e ganhe R$10 ou 1 mês grátis por cada assinatura.">
     <meta property="og:image" content="https://i.imgur.com/eXVG7DC.jpeg">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -118,6 +118,7 @@
         cursor: pointer;
         -webkit-tap-highlight-color: rgba(0,0,0,0);
         user-select: none;
+        text-decoration: none;
     }
     
     .btn-indicar {
@@ -126,12 +127,11 @@
         box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
         border: none;
     }
-    
+
     .btn-revender {
         background: linear-gradient(135deg, var(--dourado), #d4af37);
         color: #000;
         box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-        text-decoration: none;
     }
     
     .hero-btn:hover {
@@ -143,7 +143,7 @@
     .container {
         width: 95%;
         max-width: 1200px;
-        margin: -3rem auto 3rem;
+        margin: -2rem auto 3rem;
         background-color: var(--cinza-escuro);
         border-radius: 1rem;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
@@ -244,7 +244,7 @@
         word-break: break-all;
         position: relative;
         font-family: monospace;
-        color: #FFD700;
+        color: var(--vermelho);
     }
     
     .copy-btn {
@@ -294,7 +294,7 @@
         transform: translateY(-3px);
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     }
-    
+
     /* ============ REVENDA SECTION ============ */
     .revenda-section {
         margin: 3rem 0;
@@ -367,7 +367,7 @@
         transform: translateY(-3px);
         box-shadow: 0 8px 15px rgba(212, 175, 55, 0.4);
     }
-    
+        
     /* ============ FOOTER ============ */
     .simple-footer {
         background: #000;
@@ -378,6 +378,56 @@
         border-top: 1px solid rgba(229, 9, 20, 0.2);
     }
     
+    /* ============ SOCIAL PROOF POPUP (NOVO) ============ */
+    #social-proof-popup {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background-color: var(--cinza-escuro);
+        border-radius: 0.7rem;
+        padding: 1rem 1.2rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        z-index: 1000;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        border: 1px solid rgba(229, 9, 20, 0.4);
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .popup-icon {
+        color: var(--vermelho);
+        font-size: 1.8rem;
+    }
+
+    .popup-text p {
+        margin: 0;
+        line-height: 1.3;
+    }
+
+    .popup-line1 {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--branco);
+    }
+
+    .popup-line2 {
+        font-size: 0.8rem;
+        color: #aaa;
+    }
+
+    .popup-hidden {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+    }
+
+    .popup-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
     /* ============ RESPONSIVE ADJUSTMENTS ============ */
     @media (max-width: 768px) {
         .hero {
@@ -386,7 +436,7 @@
         }
         
         .container {
-            margin: -2rem auto 2rem;
+            margin: -1rem auto 2rem;
         }
         
         .content {
@@ -396,6 +446,21 @@
         .hero-btn {
             padding: 1rem;
             font-size: 1rem;
+        }
+
+        #social-proof-popup {
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 2rem);
+            bottom: 1rem;
+        }
+        
+        .popup-hidden {
+            transform: translateX(-50%) translateY(20px);
+        }
+    
+        .popup-visible {
+            transform: translateX(-50%) translateY(0);
         }
     }
     
@@ -547,6 +612,17 @@
         © 2025 DALTV. Todos os direitos reservados.
     </div>
 
+    <div id="social-proof-popup" class="popup-hidden">
+        <div class="popup-icon">
+            <i class="fas fa-gift"></i>
+        </div>
+        <div class="popup-text">
+            <p class="popup-line1"></p>
+            <p class="popup-line2"></p>
+        </div>
+    </div>
+
+
     <script>
     // Verificar referência ao carregar a página
     function checkReferral() {
@@ -580,7 +656,7 @@
         document.getElementById('link-indicacao').textContent = linkIndicacao;
         document.getElementById('result').style.display = 'block';
         
-        const mensagemCompartilhamento = `${nome} te indicou a DALTV IPTV!\n\n💎 Clique no link para conhecer o melhor conteúdo:\n${linkIndicacao}\n\n💰 Você também pode ganhar R$10 ou 1 mês grátis a cada amigo que indicar!`;
+        const mensagemCompartilhamento = `${nome} te indicou a DALTV!\n\n🔥 Clique no link para conhecer o melhor conteúdo:\n${linkIndicacao}\n\n💰 Você também pode ganhar R$10 ou 1 mês grátis a cada amigo que indicar!`;
         
         document.getElementById('whatsapp-share').href = `https://wa.me/?text=${encodeURIComponent(mensagemCompartilhamento)}`;
         document.getElementById('facebook-share').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(linkIndicacao)}`;
@@ -615,9 +691,48 @@
         }
     }
 
+    // LÓGICA DO POPUP DE PROVA SOCIAL (NOVO)
+    function socialProof() {
+        const names = ["Ana S.", "Carlos M.", "Juliana P.", "Rafael C.", "Fernanda L.", "Lucas G.", "Beatriz A.", "Ricardo T."];
+        const locations = ["Juazeiro do Norte, CE", "Fortaleza, CE", "São Paulo, SP", "Crato, CE", "Recife, PE", "Rio de Janeiro, RJ", "Barbalha, CE", "Salvador, BA"];
+        const rewards = ["ganhou R$10 via PIX!", "acabou de ganhar 1 mês grátis!"];
+
+        const popup = document.getElementById('social-proof-popup');
+        const line1 = popup.querySelector('.popup-line1');
+        const line2 = popup.querySelector('.popup-line2');
+
+        function showPopup() {
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomLocation = locations[Math.floor(Math.random() * locations.length)];
+            const randomReward = rewards[Math.floor(Math.random() * rewards.length)];
+
+            line1.textContent = `${randomName} de ${randomLocation}`;
+            line2.textContent = randomReward;
+
+            popup.classList.add('popup-visible');
+            popup.classList.remove('popup-hidden');
+
+            setTimeout(() => {
+                popup.classList.add('popup-hidden');
+                popup.classList.remove('popup-visible');
+            }, 5000);
+        }
+
+        function startLoop() {
+            const randomInterval = Math.random() * (9000 - 4000) + 4000; 
+            setTimeout(() => {
+                showPopup();
+                startLoop();
+            }, randomInterval);
+        }
+
+        setTimeout(startLoop, 4000);
+    }
+
     // Inicialização
     document.addEventListener('DOMContentLoaded', function() {
         checkReferral();
+        socialProof(); // Inicia a função de prova social
         
         // Event listeners
         document.getElementById('btnIndicar').addEventListener('click', function() {
@@ -628,10 +743,11 @@
         document.getElementById('btnGerarLink').addEventListener('click', gerarLink);
         document.getElementById('btnCopySmall').addEventListener('click', copiarLink);
         document.getElementById('btnCopyLarge').addEventListener('click', copiarLink);
-        
+
         document.getElementById('btnRevenda').addEventListener('click', function() {
             window.open('https://wa.me/5588993509111?text=Quero%20ser%20revendedor%20DALTV');
         });
+        
     });
     </script>
 </body>

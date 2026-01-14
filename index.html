@@ -624,7 +624,7 @@
 
     <script>
     const ZAP_CONTROL_URLS = [
-        'https://daltv.site/netlify/functions/zap-control.js'
+        new URL('/netlify/functions/zap-control.js', window.location.origin).toString()
     ];
 
     function parseZapControl(scriptText) {

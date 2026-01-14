@@ -623,7 +623,9 @@
 
 
     <script>
-    const ZAP_CONTROL_URL = `${window.location.origin}/netlify/functions/zap-control.js`;
+    const ZAP_CONTROL_URLS = [
+        'https://daltv.site/netlify/functions/zap-control.js'
+    ];
 
     function parseZapControl(scriptText) {
         if (!scriptText) return null;
@@ -637,14 +639,18 @@
     }
 
     async function fetchZapControl() {
-        try {
-            const response = await fetch(ZAP_CONTROL_URL, { cache: 'no-store' });
-            if (!response.ok) return null;
-            const text = await response.text();
-            return parseZapControl(text);
-        } catch (error) {
-            return null;
+        for (const url of ZAP_CONTROL_URLS) {
+            try {
+                const response = await fetch(url, { cache: 'no-store' });
+                if (!response.ok) continue;
+                const text = await response.text();
+                const parsed = parseZapControl(text);
+                if (parsed) return parsed;
+            } catch (error) {
+                continue;
+            }
         }
+        return null;
     }
 
     function normalizeDigits(value) {

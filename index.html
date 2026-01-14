@@ -625,11 +625,23 @@
     <script>
     const ZAP_CONTROL_URL = 'https://www.daltv.site/netlify/functions/zap-control.js';
 
+    function parseZapControl(scriptText) {
+        if (!scriptText) return null;
+        const match = scriptText.match(/const\s+ZAP_CONTROL\s*=\s*({[\s\S]*?});/);
+        if (!match) return null;
+        try {
+            return Function(`"use strict"; return (${match[1]});`)();
+        } catch (error) {
+            return null;
+        }
+    }
+
     async function fetchZapControl() {
         try {
             const response = await fetch(ZAP_CONTROL_URL, { cache: 'no-store' });
             if (!response.ok) return null;
-            return await response.json();
+            const text = await response.text();
+            return parseZapControl(text);
         } catch (error) {
             return null;
         }

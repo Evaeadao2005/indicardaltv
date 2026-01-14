@@ -9,7 +9,7 @@ const ZAP_CONTROL = {
     ZAP03: { number: '558892532304', active: false },
     ZAP04: { number: '558892063359', active: false },
     ZAP05: { number: '558894959133', active: false },
-    ZAP06: { number: '558894963227', active: true },
+    ZAP06: { number: '558894963227', active: false },
     ZAP07: { number: '558894968232', active: false },
     ZAP08: { number: '558894976237', active: false },
     ZAP09: { number: '558894927965', active: false }

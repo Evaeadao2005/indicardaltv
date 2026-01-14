@@ -623,7 +623,7 @@
 
 
     <script>
-    const ZAP_CONTROL_URL = '/netlify/functions/zap-control.js';
+    const ZAP_CONTROL_URL = `${window.location.origin}/netlify/functions/zap-control.js`;
 
     function parseZapControl(scriptText) {
         if (!scriptText) return null;

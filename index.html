@@ -608,7 +608,7 @@
     </div>
 
     <div class="simple-footer">
-        © 2025 DALTV. Todos os direitos reservados.
+        © <span id="currentYear"></span> DALTV. Todos os direitos reservados.
     </div>
 
     <div id="social-proof-popup" class="popup-hidden">
@@ -623,6 +623,11 @@
 
 
     <script>
+    const currentYearEl = document.getElementById('currentYear');
+    if (currentYearEl) {
+        currentYearEl.textContent = new Date().getFullYear();
+    }
+
     const ZAP_CONTROL_URLS = [
         new URL('/netlify/functions/zap-control.js', window.location.origin).toString()
     ];

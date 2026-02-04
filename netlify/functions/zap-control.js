@@ -3,11 +3,11 @@ const ZAP_CONTROL = {
     'ZAP01','ZAP02','ZAP03','ZAP04','ZAP05','ZAP06','ZAP07','ZAP08','ZAP09'
   ],
   zaps: {
-    ZAP00: { number: '558893509111', active: false },
-    ZAP01: { number: '558894635325', active: false },
-    ZAP02: { number: '558894492159', active: false },
-    ZAP03: { number: '558892532304', active: false },
-    ZAP04: { number: '558892063359', active: false },
+    ZAP00: { number: '558893509111', active: true },
+    ZAP01: { number: '558894635325', active: true },
+    ZAP02: { number: '558894492159', active: true },
+    ZAP03: { number: '558892532304', active: true },
+    ZAP04: { number: '558892063359', active: true },
     ZAP05: { number: '558894959133', active: true },
     ZAP06: { number: '558894963227', active: true },
     ZAP07: { number: '558894968232', active: true },

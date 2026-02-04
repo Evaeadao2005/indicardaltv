@@ -11,7 +11,7 @@ const ZAP_CONTROL = {
     ZAP05: { number: '558894959133', active: true },
     ZAP06: { number: '558894963227', active: true },
     ZAP07: { number: '558894968232', active: true },
-    ZAP08: { number: '558894976237', active: false },
+    ZAP08: { number: '558894976237', active: true },
     ZAP09: { number: '558894927965', active: true }
   }
 };
@@ -91,12 +91,18 @@ function getRandomFallbackNumber(bannedNumbers) {
 function getRandomSelectableNumber(control) {
   if (!control || !control.zaps) return null;
   const bannedNumbers = getBannedNumbers(control);
-  const candidates = Object.keys(control.zaps)
-    .filter((zapId) => isZapSelectable(control.zaps, zapId, bannedNumbers))
-    .map((zapId) => control.zaps[zapId].number);
+  const candidates = getSelectableNumbers(control, bannedNumbers);
   if (candidates.length === 0) return null;
   const index = Math.floor(Math.random() * candidates.length);
   return candidates[index];
+}
+
+function getSelectableNumbers(control, bannedNumbers) {
+  if (!control || !control.zaps) return [];
+  const activeBannedNumbers = bannedNumbers || getBannedNumbers(control);
+  return Object.keys(control.zaps)
+    .filter((zapId) => isZapSelectable(control.zaps, zapId, activeBannedNumbers))
+    .map((zapId) => control.zaps[zapId].number);
 }
 
 function pickZapNumber(control, requestedZap) {
@@ -129,9 +135,7 @@ async function resolveRandomZapNumber() {
   const control = await loadZapControl();
   if (control && control.zaps) {
     const bannedNumbers = getBannedNumbers(control);
-    const activeNumbers = Object.keys(control.zaps)
-      .filter((zapId) => isZapSelectable(control.zaps, zapId, bannedNumbers))
-      .map((zapId) => control.zaps[zapId].number);
+    const activeNumbers = getSelectableNumbers(control, bannedNumbers);
     if (activeNumbers.length > 0) {
       const index = Math.floor(Math.random() * activeNumbers.length);
       return activeNumbers[index];
@@ -141,10 +145,36 @@ async function resolveRandomZapNumber() {
   return getRandomFallbackNumber();
 }
 
+async function resolveRotatingZapNumber(usedNumbers = []) {
+  const control = await loadZapControl();
+  const bannedNumbers = getBannedNumbers(control);
+  const selectableNumbers = getSelectableNumbers(control, bannedNumbers);
+  if (selectableNumbers.length === 0) {
+    return { number: getRandomFallbackNumber(bannedNumbers), nextUsed: [] };
+  }
+
+  const normalizedUsed = new Set(
+    (usedNumbers || [])
+      .filter((number) => selectableNumbers.includes(number))
+  );
+  const remaining = selectableNumbers.filter((number) => !normalizedUsed.has(number));
+
+  if (remaining.length === 0) {
+    const index = Math.floor(Math.random() * selectableNumbers.length);
+    const number = selectableNumbers[index];
+    return { number, nextUsed: [number] };
+  }
+
+  const index = Math.floor(Math.random() * remaining.length);
+  const number = remaining[index];
+  return { number, nextUsed: [...Array.from(normalizedUsed), number] };
+}
+
 module.exports = {
   ZAP_CONTROL,
   resolveZapNumber,
   resolveRandomZapNumber,
+  resolveRotatingZapNumber,
 
   // ✅ Netlify Function Handler com CORS + OPTIONS
   handler: async (event) => {

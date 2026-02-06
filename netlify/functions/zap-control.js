@@ -3,16 +3,16 @@ const ZAP_CONTROL = {
     'ZAP01','ZAP02','ZAP03','ZAP04','ZAP05','ZAP06','ZAP07','ZAP08','ZAP09'
   ],
   zaps: {
-    ZAP00: { number: '558893509111', active: false },
-    ZAP01: { number: '558894635325', active: true },
-    ZAP02: { number: '558894492159', active: true },
-    ZAP03: { number: '558892532304', active: false },
-    ZAP04: { number: '558892063359', active: false },
-    ZAP05: { number: '558894959133', active: true },
-    ZAP06: { number: '558894963227', active: true },
-    ZAP07: { number: '558894968232', active: true },
-    ZAP08: { number: '558894976237', active: true },
-    ZAP09: { number: '558894927965', active: true }
+    ZAP00: { number: '558893509111', active: true, rotate: false },
+    ZAP01: { number: '558894635325', active: true, rotate: false },
+    ZAP02: { number: '558894492159', active: true, rotate: false },
+    ZAP03: { number: '558892532304', active: false, rotate: false },
+    ZAP04: { number: '558892063359', active: false, rotate: false },
+    ZAP05: { number: '558894959133', active: true, rotate: true },
+    ZAP06: { number: '558894963227', active: true, rotate: true },
+    ZAP07: { number: '558894968232', active: true, rotate: true },
+    ZAP08: { number: '558894976237', active: true, rotate: true },
+    ZAP09: { number: '558894927965', active: true, rotate: true }
   }
 };
 
@@ -79,6 +79,11 @@ function isZapSelectable(zaps, zapId, bannedNumbers) {
     && (!bannedNumbers || !bannedNumbers.has(zaps[zapId].number));
 }
 
+function isZapRotatable(zaps, zapId, bannedNumbers) {
+  return isZapSelectable(zaps, zapId, bannedNumbers)
+    && zaps[zapId].rotate !== false;
+}
+
 function getRandomFallbackNumber(bannedNumbers) {
   const candidates = Object.keys(FALLBACK_ZAP_MAP)
     .map((zapId) => FALLBACK_ZAP_MAP[zapId])
@@ -102,6 +107,14 @@ function getSelectableNumbers(control, bannedNumbers) {
   const activeBannedNumbers = bannedNumbers || getBannedNumbers(control);
   return Object.keys(control.zaps)
     .filter((zapId) => isZapSelectable(control.zaps, zapId, activeBannedNumbers))
+    .map((zapId) => control.zaps[zapId].number);
+}
+
+function getRotatableNumbers(control, bannedNumbers) {
+  if (!control || !control.zaps) return [];
+  const activeBannedNumbers = bannedNumbers || getBannedNumbers(control);
+  return Object.keys(control.zaps)
+    .filter((zapId) => isZapRotatable(control.zaps, zapId, activeBannedNumbers))
     .map((zapId) => control.zaps[zapId].number);
 }
 
@@ -148,20 +161,20 @@ async function resolveRandomZapNumber() {
 async function resolveRotatingZapNumber(usedNumbers = []) {
   const control = await loadZapControl();
   const bannedNumbers = getBannedNumbers(control);
-  const selectableNumbers = getSelectableNumbers(control, bannedNumbers);
-  if (selectableNumbers.length === 0) {
+  const rotatableNumbers = getRotatableNumbers(control, bannedNumbers);
+  if (rotatableNumbers.length === 0) {
     return { number: getRandomFallbackNumber(bannedNumbers), nextUsed: [] };
   }
 
   const normalizedUsed = new Set(
     (usedNumbers || [])
-      .filter((number) => selectableNumbers.includes(number))
+      .filter((number) => rotatableNumbers.includes(number))
   );
-  const remaining = selectableNumbers.filter((number) => !normalizedUsed.has(number));
+  const remaining = rotatableNumbers.filter((number) => !normalizedUsed.has(number));
 
   if (remaining.length === 0) {
-    const index = Math.floor(Math.random() * selectableNumbers.length);
-    const number = selectableNumbers[index];
+    const index = Math.floor(Math.random() * rotatableNumbers.length);
+    const number = rotatableNumbers[index];
     return { number, nextUsed: [number] };
   }
 

@@ -12,7 +12,7 @@ const ZAP_CONTROL = {
     ZAP06: { number: '558894963227', active: true, rotate: true },
     ZAP07: { number: '558894968232', active: true, rotate: true },
     ZAP08: { number: '558894976237', active: true, rotate: false },
-    ZAP09: { number: '558894927965', active: true, rotate: true }
+    ZAP09: { number: '558894927965', active: false, rotate: true }
   }
 };
 

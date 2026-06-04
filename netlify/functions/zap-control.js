@@ -3,14 +3,14 @@ const ZAP_CONTROL = {
     'ZAP01','ZAP02','ZAP03','ZAP04','ZAP05','ZAP06','ZAP07','ZAP08','ZAP09'
   ],
   zaps: {
-    ZAP00: { number: '558893509111', active: false, rotate: true },
+    ZAP00: { number: '558893509111', active: true, rotate: true },
     ZAP01: { number: '558894635325', active: true, rotate: true },
     ZAP02: { number: '558894492159', active: true, rotate: false },
     ZAP03: { number: '558892532304', active: true, rotate: false },
     ZAP04: { number: '558892063359', active: true, rotate: true },
     ZAP05: { number: '558894959133', active: true, rotate: true },
     ZAP06: { number: '558894963227', active: true, rotate: true },
-    ZAP07: { number: '558894968232', active: false, rotate: true },
+    ZAP07: { number: '558894968232', active: true, rotate: true },
     ZAP08: { number: '558894976237', active: true, rotate: true },
     ZAP09: { number: '558894927965', active: true, rotate: false }
   }
@@ -31,6 +31,7 @@ const FALLBACK_ZAP_MAP = {
 
 // ✅ Ajuste aqui os domínios permitidos
 const ALLOWED_ORIGINS = new Set([
+  'https://daltv.site',
   'https://indicar.daltv.site',
   // opcional para desenvolvimento:
   'http://localhost:3000',
@@ -55,6 +56,66 @@ function buildCorsHeaders(origin) {
 
 function normalizeZapId(zapId) {
   return (zapId || '').toUpperCase();
+}
+
+function getSaudacao(adjustedHour) {
+  const saudacoes = {
+    morning: 'Bom dia! Tenho interesse em assinar a DALTV',
+    afternoon: 'Boa tarde! Tenho interesse em assinar a DALTV',
+    night: 'Boa noite! Tenho interesse em assinar a DALTV',
+    earlyMorning: 'Boa madrugada! Tenho interesse em assinar a DALTV'
+  };
+
+  if (adjustedHour >= 6 && adjustedHour < 12) return saudacoes.morning;
+  if (adjustedHour >= 12 && adjustedHour < 18) return saudacoes.afternoon;
+  if (adjustedHour >= 0 && adjustedHour < 6) return saudacoes.earlyMorning;
+  return saudacoes.night;
+}
+
+function readTextParam(value) {
+  const rawValue = String(value || '').trim();
+  if (!rawValue) return '';
+  try {
+    return decodeURIComponent(rawValue.replace(/\+/g, '%20'));
+  } catch (error) {
+    return rawValue;
+  }
+}
+
+function getRequestPath(event) {
+  const rawUrl = event && event.rawUrl;
+  if (rawUrl) {
+    try {
+      return new URL(rawUrl).pathname;
+    } catch (error) {}
+  }
+  return String((event && event.path) || '');
+}
+
+function isFunctionApiPath(event) {
+  return getRequestPath(event).includes('/.netlify/functions/zap-control');
+}
+
+function wantsJsonResponse(event) {
+  const query = (event && event.queryStringParameters) || {};
+  const mode = String(query.mode || query.format || '').trim().toLowerCase();
+  if (mode === 'json' || mode === 'config') return true;
+  const accept = String((event && (event.headers?.accept || event.headers?.Accept)) || '').toLowerCase();
+  if (accept.includes('application/json') && !accept.includes('text/html')) return true;
+  return isFunctionApiPath(event) && !query.text && !query.message && !query.redirect;
+}
+
+async function buildWhatsappRedirectUrl(event) {
+  const hour = new Date().getUTCHours() - 3;
+  const adjustedHour = (hour + 24) % 24;
+  const saudacao = getSaudacao(adjustedHour);
+  const query = (event && event.queryStringParameters) || {};
+  const requestedZap = query.zap;
+  const customText = readTextParam(query.text || query.message);
+  const zapNumber = await resolveZapNumber(requestedZap);
+  if (!zapNumber) return null;
+  const message = customText || saudacao;
+  return `https://api.whatsapp.com/send?phone=${zapNumber}&text=${encodeURIComponent(message)}`;
 }
 
 function getBannedNumbers(control) {
@@ -188,11 +249,36 @@ module.exports = {
   resolveZapNumber,
   resolveRandomZapNumber,
   resolveRotatingZapNumber,
+  buildWhatsappRedirectUrl,
 
   // ✅ Netlify Function Handler com CORS + OPTIONS
   handler: async (event) => {
     const origin = event.headers?.origin || event.headers?.Origin;
     const corsHeaders = buildCorsHeaders(origin);
+
+    if (!wantsJsonResponse(event) && event.httpMethod !== 'OPTIONS') {
+      const redirectUrl = await buildWhatsappRedirectUrl(event);
+      if (!redirectUrl) {
+        return {
+          statusCode: 503,
+          headers: {
+            'Content-Type': 'text/plain; charset=utf-8',
+            'Cache-Control': 'no-store',
+            'X-Robots-Tag': 'noindex, nofollow, noarchive'
+          },
+          body: 'Atendimento indisponível no momento.'
+        };
+      }
+      return {
+        statusCode: 302,
+        headers: {
+          Location: redirectUrl,
+          'Cache-Control': 'no-store',
+          'X-Robots-Tag': 'noindex, nofollow, noarchive'
+        },
+        body: ''
+      };
+    }
 
     // Se o origin não for permitido e veio de browser, já responde negando CORS
     // (o browser vai bloquear do mesmo jeito; isso é só pra ficar explícito)
